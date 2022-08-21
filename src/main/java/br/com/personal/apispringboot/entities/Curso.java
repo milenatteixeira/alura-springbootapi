@@ -1,13 +1,22 @@
 package br.com.personal.apispringboot.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
+@Getter
+@Setter
 public class Curso {
 
-	@Getter @Setter private Long id;
-	@Getter @Setter private String nome;
-	@Getter @Setter private String categoria;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nome;
+	private String categoria;
 
 	public Curso(String nome, String categoria) {
 		this.nome = nome;

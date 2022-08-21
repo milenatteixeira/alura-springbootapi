@@ -2,17 +2,31 @@ package br.com.personal.apispringboot.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
+@Entity
 public class Resposta {
 
-	@Getter @Setter private Long id;
-	@Getter @Setter private String mensagem;
-	@Getter @Setter private Topico topico;
-	@Getter @Setter private LocalDateTime dataCriacao = LocalDateTime.now();
-	@Getter @Setter private Usuario autor;
-	@Getter @Setter private Boolean solucao = false;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String mensagem;
+
+	@ManyToOne
+	private Topico topico;
+	private LocalDateTime dataCriacao = LocalDateTime.now();
+	
+	@ManyToOne
+	private Usuario autor;
+	private Boolean solucao = false;
 
 	@Override
 	public int hashCode() {
